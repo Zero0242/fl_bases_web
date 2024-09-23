@@ -15,6 +15,8 @@ dart pub add dev:custom_lint
 dart pub add dev:riverpod_lint
 ```
 
+Ejecutar `dart run build_runner watch` para generar los providers
+
 ## GoRouter
 
 Considerar instalar **go_router**
