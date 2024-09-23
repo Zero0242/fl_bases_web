@@ -1,6 +1,10 @@
 import 'package:fl_bases_web/config/config.dart';
+import 'package:fl_bases_web/presentation/layouts/main_layout.dart';
+import 'package:fl_bases_web/presentation/screens/screens.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(const ProviderScope(child: MainApp()));
@@ -11,14 +15,32 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: AppTheme(isDarkMode: false).getTheme(),
       title: "Flutter",
-      initialRoute: AppRouter.root,
-      builder: (_, child) {
-        return child ?? const CircularProgressIndicator();
-      },
+      routerConfig: GoRouter(
+        debugLogDiagnostics: kDebugMode,
+        redirect: (context, state) async {
+          if (state.uri.path == '/') return HomeScreen.route;
+          return null;
+        },
+        routes: [
+          ShellRoute(
+            builder: (context, state, child) {
+              return MainLayoutPage(child: child);
+            },
+            routes: <RouteBase>[
+              GoRoute(
+                path: HomeScreen.route,
+                builder: (context, state) {
+                  return const HomeScreen(base: '0');
+                },
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
