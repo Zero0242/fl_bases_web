@@ -4,3 +4,4 @@
 library;
 
 export 'home_screen.dart';
+export 'river_screen.dart';

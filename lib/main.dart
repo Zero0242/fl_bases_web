@@ -1,5 +1,6 @@
 import 'package:fl_bases_web/config/config.dart';
 import 'package:fl_bases_web/presentation/layouts/main_layout.dart';
+import 'package:fl_bases_web/presentation/providers/theme_provider.dart';
 import 'package:fl_bases_web/presentation/screens/screens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +11,15 @@ void main() {
   runApp(const ProviderScope(child: MainApp()));
 }
 
-class MainApp extends StatelessWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final isDarkMode = ref.watch(themeProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: AppTheme(isDarkMode: false).getTheme(),
+      theme: AppTheme(isDarkMode: isDarkMode).getTheme(),
       title: "Flutter",
       routerConfig: GoRouter(
         debugLogDiagnostics: kDebugMode,
@@ -42,6 +44,21 @@ class MainApp extends StatelessWidget {
                     builder: (context, state) {
                       final base = state.pathParameters['count'] ?? '0';
                       return HomeScreen(base: base);
+                    },
+                  ),
+                ],
+              ),
+              GoRoute(
+                path: RiverScreen.route,
+                builder: (context, state) {
+                  return const RiverScreen();
+                },
+                routes: [
+                  GoRoute(
+                    path: ':count',
+                    builder: (context, state) {
+                      final base = state.pathParameters['count'] ?? '0';
+                      return RiverScreen(count: base);
                     },
                   ),
                 ],

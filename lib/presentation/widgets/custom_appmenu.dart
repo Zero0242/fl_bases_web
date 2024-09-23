@@ -1,14 +1,17 @@
+import 'package:fl_bases_web/presentation/providers/providers.dart';
 import 'package:fl_bases_web/presentation/screens/screens.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import 'custom_flat_button.dart';
 
-class CustomAppMenu extends StatelessWidget {
+class CustomAppMenu extends ConsumerWidget {
   const CustomAppMenu({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final isDarkMode = ref.watch(themeProvider);
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(
@@ -26,7 +29,9 @@ class CustomAppMenu extends StatelessWidget {
               ),
               CustomFlatButton(
                 label: 'Contador Provider',
-                onPressed: () {},
+                onPressed: () {
+                  context.pushReplacement(RiverScreen.route);
+                },
                 color: Colors.black,
               ),
               CustomFlatButton(
@@ -43,8 +48,15 @@ class CustomAppMenu extends StatelessWidget {
               ),
               CustomFlatButton(
                 label: 'Contador Provider 200',
-                onPressed: () {},
+                onPressed: () {
+                  context.pushReplacement([RiverScreen.route, '/200'].join(''));
+                },
                 color: Colors.black,
+              ),
+              const Spacer(),
+              IconButton(
+                onPressed: ref.read(themeProvider.notifier).toggleMode,
+                icon: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
               ),
             ],
           ),
