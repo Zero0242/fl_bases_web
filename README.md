@@ -1,3 +1,20 @@
-# fl_bases_web
+# Bases Web
 
-A new Flutter project.
+Rework de un repaso de flutter, aplicado con diferentes paquetes
+
+## Riverpod
+
+Considerar instalar esto
+
+```shell
+dart pub add riverpod
+dart pub add riverpod_annotation
+dart pub add dev:riverpod_generator
+dart pub add dev:build_runner
+dart pub add dev:custom_lint
+dart pub add dev:riverpod_lint
+```
+
+## GoRouter
+
+Considerar instalar **go_router**
