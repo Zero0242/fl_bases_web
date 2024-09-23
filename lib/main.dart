@@ -1,7 +1,9 @@
+import 'package:fl_bases_web/config/config.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(const ProviderScope(child: MainApp()));
 }
 
 class MainApp extends StatelessWidget {
@@ -9,30 +11,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: AppTheme(isDarkMode: false).getTheme(),
       title: "Flutter",
-      // routes: AppRouter.rutasApp,
-      // initialRoute: AppRouter.root,
-      home: TemporalScreen(),
-    );
-  }
-}
-
-class TemporalScreen extends StatelessWidget {
-  const TemporalScreen({super.key});
-  static const String route = '/route';
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Title')),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        alignment: Alignment.center,
-        child: const Text('TemporalScreen Screen body'),
-      ),
+      initialRoute: AppRouter.root,
+      builder: (_, child) {
+        return child ?? const CircularProgressIndicator();
+      },
     );
   }
 }
