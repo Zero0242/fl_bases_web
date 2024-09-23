@@ -36,6 +36,15 @@ class MainApp extends StatelessWidget {
                 builder: (context, state) {
                   return const HomeScreen(base: '0');
                 },
+                routes: [
+                  GoRoute(
+                    path: ':count',
+                    builder: (context, state) {
+                      final base = state.pathParameters['count'] ?? '0';
+                      return HomeScreen(base: base);
+                    },
+                  ),
+                ],
               ),
             ],
           ),
