@@ -10,10 +10,28 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+      debugShowCheckedModeBanner: false,
+      title: "Flutter",
+      // routes: AppRouter.rutasApp,
+      // initialRoute: AppRouter.root,
+      home: TemporalScreen(),
+    );
+  }
+}
+
+class TemporalScreen extends StatelessWidget {
+  const TemporalScreen({super.key});
+  static const String route = '/route';
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Title')),
+      body: Container(
+        height: double.infinity,
+        width: double.infinity,
+        alignment: Alignment.center,
+        child: const Text('TemporalScreen Screen body'),
       ),
     );
   }
