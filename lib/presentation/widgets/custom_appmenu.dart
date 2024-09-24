@@ -36,7 +36,10 @@ class CustomAppMenu extends ConsumerWidget {
               ),
               CustomFlatButton(
                 label: 'Otra Pagina',
-                onPressed: () {},
+                onPressed: () {
+                  final notfoundroute = "/${DateTime.now().toIso8601String()}";
+                  context.pushReplacement(notfoundroute);
+                },
                 color: Colors.black,
               ),
               CustomFlatButton(

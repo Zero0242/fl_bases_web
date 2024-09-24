@@ -1,6 +1,6 @@
 import 'package:fl_bases_web/config/config.dart';
 import 'package:fl_bases_web/presentation/layouts/main_layout.dart';
-import 'package:fl_bases_web/presentation/providers/theme_provider.dart';
+import 'package:fl_bases_web/presentation/providers/providers.dart';
 import 'package:fl_bases_web/presentation/screens/screens.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +43,9 @@ class _MainAppState extends ConsumerState<MainApp> {
         redirect: (context, state) async {
           if (state.uri.path == '/') return HomeScreen.route;
           return null;
+        },
+        errorBuilder: (context, state) {
+          return const MainLayoutPage(child: NotFoundScreen());
         },
         routes: [
           ShellRoute(
