@@ -1,12 +1,8 @@
 import 'package:fl_bases_web/config/config.dart';
-import 'package:fl_bases_web/presentation/layouts/main_layout.dart';
 import 'package:fl_bases_web/presentation/providers/providers.dart';
-import 'package:fl_bases_web/presentation/screens/screens.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:go_router/go_router.dart';
 
 void main() {
   runApp(const ProviderScope(child: MainApp()));
@@ -34,59 +30,12 @@ class _MainAppState extends ConsumerState<MainApp> {
   @override
   Widget build(BuildContext context) {
     final isDarkMode = ref.watch(themeProvider);
+    final appRouter = ref.watch(appRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: AppTheme(isDarkMode: isDarkMode).getTheme(),
       title: "Flutter",
-      routerConfig: GoRouter(
-        debugLogDiagnostics: kDebugMode,
-        redirect: (context, state) async {
-          if (state.uri.path == '/') return HomeScreen.route;
-          return null;
-        },
-        errorBuilder: (context, state) {
-          return const MainLayoutPage(child: NotFoundScreen());
-        },
-        routes: [
-          ShellRoute(
-            builder: (context, state, child) {
-              return MainLayoutPage(child: child);
-            },
-            routes: <RouteBase>[
-              GoRoute(
-                path: HomeScreen.route,
-                builder: (context, state) {
-                  return const HomeScreen(base: '0');
-                },
-                routes: [
-                  GoRoute(
-                    path: ':count',
-                    builder: (context, state) {
-                      final base = state.pathParameters['count'] ?? '0';
-                      return HomeScreen(base: base);
-                    },
-                  ),
-                ],
-              ),
-              GoRoute(
-                path: RiverScreen.route,
-                builder: (context, state) {
-                  return const RiverScreen();
-                },
-                routes: [
-                  GoRoute(
-                    path: ':count',
-                    builder: (context, state) {
-                      final base = state.pathParameters['count'] ?? '0';
-                      return RiverScreen(count: base);
-                    },
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ],
-      ),
+      routerConfig: appRouter,
     );
   }
 }
