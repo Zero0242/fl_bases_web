@@ -1,16 +1,22 @@
-# bases_web
+# Bases Web
 
-A new Flutter project.
+Rework de un repaso de flutter, aplicado con diferentes paquetes
 
-## Getting Started
+## Riverpod
 
-This project is a starting point for a Flutter application.
+Considerar instalar esto
 
-A few resources to get you started if this is your first Flutter project:
+```shell
+dart pub add riverpod
+dart pub add riverpod_annotation
+dart pub add dev:riverpod_generator
+dart pub add dev:build_runner
+dart pub add dev:custom_lint
+dart pub add dev:riverpod_lint
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Ejecutar `dart run build_runner watch` para generar los providers
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## GoRouter
+
+Considerar instalar **go_router**
