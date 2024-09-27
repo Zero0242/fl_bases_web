@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AboutView extends StatelessWidget {
   const AboutView({super.key});
+  static const String path = 'about';
 
   @override
   Widget build(BuildContext context) {

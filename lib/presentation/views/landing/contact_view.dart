@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ContactView extends StatelessWidget {
   const ContactView({super.key});
+  static const String path = 'contact';
 
   @override
   Widget build(BuildContext context) {

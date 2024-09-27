@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class LocationView extends StatelessWidget {
   const LocationView({super.key});
+  static const String path = 'location';
 
   @override
   Widget build(BuildContext context) {

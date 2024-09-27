@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class PricingView extends StatelessWidget {
   const PricingView({super.key});
+  static const String path = 'pricing';
 
   @override
   Widget build(BuildContext context) {

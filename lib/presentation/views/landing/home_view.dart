@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
+  static const String path = 'home';
 
   @override
   Widget build(BuildContext context) {
