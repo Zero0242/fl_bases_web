@@ -1,6 +1,7 @@
 import 'package:fl_bases_web/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'custom_menu_item.dart';
@@ -45,7 +46,7 @@ class _FloatingMenuState extends ConsumerState<FloatingMenu>
         child: Container(
           color: Colors.black,
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          height: isOpen ? 308 : kBottomNavigationBarHeight,
+          height: isOpen ? 330 : kBottomNavigationBarHeight,
           width: 150,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -75,6 +76,11 @@ class _FloatingMenuState extends ConsumerState<FloatingMenu>
                   text: 'Location',
                   delay: 120,
                   onPressed: () => pageProvider.goTo(4),
+                ),
+                CustomMenuItem(
+                  text: 'Exit',
+                  delay: 120,
+                  onPressed: () => context.pushReplacement('/'),
                 ),
                 const SizedBox(height: 10),
               ],

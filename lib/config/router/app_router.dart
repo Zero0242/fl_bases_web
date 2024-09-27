@@ -27,35 +27,31 @@ GoRouter appRouter(AppRouterRef ref) {
         routes: <RouteBase>[
           GoRoute(
             path: HomeScreen.route,
+            builder: (_, __) => const HomeScreen(base: '0'),
+          ),
+          GoRoute(
+            path: '${HomeScreen.route}/:count',
             builder: (context, state) {
-              return const HomeScreen(base: '0');
+              final base = state.pathParameters['count'] ?? '0';
+              return HomeScreen(base: base);
             },
-            routes: [
-              GoRoute(
-                path: ':count',
-                builder: (context, state) {
-                  final base = state.pathParameters['count'] ?? '0';
-                  return HomeScreen(base: base);
-                },
-              ),
-            ],
           ),
           GoRoute(
             path: RiverScreen.route,
+            builder: (_, __) => const RiverScreen(count: '0'),
+          ),
+          GoRoute(
+            path: '${RiverScreen.route}/:count',
             builder: (context, state) {
-              return const RiverScreen();
+              final count = state.pathParameters['count'] ?? '0';
+              return RiverScreen(count: count);
             },
-            routes: [
-              GoRoute(
-                path: ':count',
-                builder: (context, state) {
-                  final base = state.pathParameters['count'] ?? '0';
-                  return RiverScreen(count: base);
-                },
-              ),
-            ],
           ),
         ],
+      ),
+      GoRoute(
+        path: LandingScreen.route,
+        redirect: (_, __) => '${LandingScreen.route}/${HomeView.path}',
       ),
       GoRoute(
         path: '${LandingScreen.route}/:path',
