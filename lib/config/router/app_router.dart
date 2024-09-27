@@ -1,5 +1,6 @@
 import 'package:fl_bases_web/presentation/layouts/main_layout.dart';
 import 'package:fl_bases_web/presentation/screens/screens.dart';
+import 'package:fl_bases_web/presentation/views/landing/landing.dart';
 import 'package:flutter/foundation.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -57,9 +58,10 @@ GoRouter appRouter(AppRouterRef ref) {
         ],
       ),
       GoRoute(
-        path: LandingScreen.route,
+        path: '${LandingScreen.route}/:path',
         builder: (context, state) {
-          return const LandingScreen();
+          final path = state.pathParameters['path'] ?? HomeView.path;
+          return LandingScreen(view: path);
         },
       ),
     ],

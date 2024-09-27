@@ -9,13 +9,10 @@ part 'landing_page_provider.g.dart';
 class LandingPage extends _$LandingPage {
   @override
   PageController build() {
-    final scrollController = PageController(
-      initialPage: 0,
-    );
+    final currentIndex = ref.watch(landingPageIndexProvider);
+    final pages = ref.read(landingPageRoutesProvider);
+    final scrollController = PageController(initialPage: 0);
     scrollController.addListener(() {
-      final currentIndex = ref.read(landingPageIndexProvider);
-      final pages = ref.read(landingPageRoutesProvider);
-
       final pageIndex = (scrollController.page ?? 0).round();
       if (pageIndex != currentIndex) {
         html.document.title = pages[pageIndex];
