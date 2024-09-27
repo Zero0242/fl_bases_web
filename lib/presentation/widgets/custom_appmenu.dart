@@ -45,14 +45,14 @@ class CustomAppMenu extends ConsumerWidget {
               CustomFlatButton(
                 label: 'Stateful 100',
                 onPressed: () {
-                  context.pushReplacement([HomeScreen.route, '/100'].join(''));
+                  context.pushReplacement([HomeScreen.route, '/100'].join());
                 },
                 color: Colors.black,
               ),
               CustomFlatButton(
                 label: 'Contador Provider 200',
                 onPressed: () {
-                  context.pushReplacement([RiverScreen.route, '/200'].join(''));
+                  context.pushReplacement([RiverScreen.route, '/200'].join());
                 },
                 color: Colors.black,
               ),
@@ -60,6 +60,12 @@ class CustomAppMenu extends ConsumerWidget {
               IconButton(
                 onPressed: ref.read(themeProvider.notifier).toggleMode,
                 icon: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
+              ),
+              IconButton(
+                onPressed: () {
+                  context.go(LandingScreen.route);
+                },
+                icon: const Icon(Icons.exit_to_app),
               ),
             ],
           ),

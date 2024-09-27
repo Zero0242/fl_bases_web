@@ -4,5 +4,6 @@
 library;
 
 export 'home_screen.dart';
+export 'landing/landing_screen.dart';
 export 'not_found_screen.dart';
 export 'river_screen.dart';

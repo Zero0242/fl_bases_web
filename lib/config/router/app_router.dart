@@ -55,6 +55,12 @@ GoRouter appRouter(AppRouterRef ref) {
           ),
         ],
       ),
+      GoRoute(
+        path: LandingScreen.route,
+        builder: (context, state) {
+          return const LandingScreen();
+        },
+      ),
     ],
   );
 }
