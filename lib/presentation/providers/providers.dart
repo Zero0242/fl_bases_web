@@ -4,4 +4,5 @@
 library;
 
 export 'counter_provider.dart';
+export 'landing/landing_page_provider.dart';
 export 'theme/theme_provider.dart';

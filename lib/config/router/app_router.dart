@@ -9,6 +9,7 @@ part 'app_router.g.dart';
 @riverpod
 GoRouter appRouter(AppRouterRef ref) {
   return GoRouter(
+    initialLocation: LandingScreen.route,
     debugLogDiagnostics: kDebugMode,
     redirect: (context, state) async {
       if (state.uri.path == '/') return HomeScreen.route;

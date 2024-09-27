@@ -1,42 +1,35 @@
+import 'package:fl_bases_web/presentation/views/landing/landing.dart';
 import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:universal_html/html.dart' as html;
 
 part 'landing_page_provider.g.dart';
 
 @riverpod
 class LandingPage extends _$LandingPage {
-  final List<String> _pages = const <String>[
-    'home',
-    'about',
-    'pricing',
-    'contact',
-    'location',
-  ];
-
-  int _currentIndex = 0;
-
   @override
-  PageController build(String routeName) {
-    _currentIndex = !_pages.contains(routeName) ? 0 : _pages.indexOf(routeName);
-    return PageController(
-      initialPage: _currentIndex,
+  PageController build() {
+    final scrollController = PageController(
+      initialPage: 0,
     );
-    // ..addListener(
-    //     () {
-    //       final pageIndex = (scrollController.page ?? 0).round();
-    //       if (pageIndex != _currentIndex) {
-    //         html.document.title = _pages[pageIndex];
+    scrollController.addListener(() {
+      final currentIndex = ref.read(landingPageIndexProvider);
+      final pages = ref.read(landingPageRoutesProvider);
 
-    //         html.window.history
-    //             .pushState(null, 'none', '#/${_pages[pageIndex]}');
-    //         _currentIndex = pageIndex;
-    //       }
-    //     },
-    //   );
+      final pageIndex = (scrollController.page ?? 0).round();
+      if (pageIndex != currentIndex) {
+        html.document.title = pages[pageIndex];
+        html.window.history
+            .pushState(null, 'none', '/landing/${pages[pageIndex]}');
+        ref.read(landingPageIndexProvider.notifier).updateCount(pageIndex);
+      }
+    });
+    return scrollController;
   }
 
   void goTo(int index) {
-    // html.window.history.pushState(null, 'none', '#/${_pages[index]}');
+    final pages = ref.read(landingPageRoutesProvider);
+    html.window.history.pushState(null, 'none', '/landing/${pages[index]}');
 
     state.animateToPage(
       index,
@@ -44,4 +37,27 @@ class LandingPage extends _$LandingPage {
       curve: Curves.easeInOut,
     );
   }
+}
+
+@riverpod
+class LandingPageIndex extends _$LandingPageIndex {
+  @override
+  int build() {
+    return 0;
+  }
+
+  void updateCount(int update) {
+    state = update;
+  }
+}
+
+@riverpod
+List<String> landingPageRoutes(LandingPageRoutesRef ref) {
+  return [
+    HomeView.path,
+    AboutView.path,
+    PricingView.path,
+    ContactView.path,
+    LocationView.path,
+  ];
 }

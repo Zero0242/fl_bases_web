@@ -1,12 +1,16 @@
+import 'package:fl_bases_web/presentation/providers/providers.dart';
 import 'package:fl_bases_web/presentation/views/landing/landing.dart';
+import 'package:fl_bases_web/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class LandingScreen extends StatelessWidget {
+class LandingScreen extends ConsumerWidget {
   const LandingScreen({super.key});
   static const String route = '/landing';
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final controller = ref.watch(landingPageProvider);
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
@@ -20,6 +24,7 @@ class LandingScreen extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             PageView(
+              controller: controller,
               scrollDirection: Axis.vertical,
               children: const <Widget>[
                 HomeView(),
@@ -29,11 +34,11 @@ class LandingScreen extends StatelessWidget {
                 LocationView(),
               ],
             ),
-            // Positioned(
-            //   top: 20,
-            //   right: 20,
-            //   child: CustomAppMenu(),
-            // ),
+            const Positioned(
+              top: 20,
+              right: 20,
+              child: FloatingMenu(),
+            ),
           ],
         ),
       ),

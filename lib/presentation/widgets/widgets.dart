@@ -5,3 +5,5 @@ library;
 
 export 'custom_appmenu.dart';
 export 'custom_flat_button.dart';
+export 'landing/custom_menu_item.dart';
+export 'landing/floating_menu.dart';
