@@ -1,5 +1,6 @@
-import 'package:fl_bases_web/presentation/views/landing/landing.dart';
+import 'package:fl_bases_web/app/routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:universal_html/html.dart' as html;
 
@@ -49,7 +50,7 @@ class LandingPageIndex extends _$LandingPageIndex {
 }
 
 @riverpod
-List<String> landingPageRoutes(LandingPageRoutesRef ref) {
+List<String> landingPageRoutes(Ref ref) {
   return [
     HomeView.path,
     AboutView.path,

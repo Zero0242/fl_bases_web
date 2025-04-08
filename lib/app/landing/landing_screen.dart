@@ -1,6 +1,5 @@
-import 'package:fl_bases_web/presentation/providers/providers.dart';
-import 'package:fl_bases_web/presentation/views/landing/landing.dart';
-import 'package:fl_bases_web/presentation/widgets/widgets.dart';
+import 'package:fl_bases_web/app/routes.dart';
+import 'package:fl_bases_web/presentation/landing/landing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

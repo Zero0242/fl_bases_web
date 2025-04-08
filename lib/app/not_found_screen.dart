@@ -1,4 +1,4 @@
-import 'package:fl_bases_web/presentation/widgets/widgets.dart';
+import 'package:fl_bases_web/presentation/shared/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

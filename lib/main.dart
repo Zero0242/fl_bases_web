@@ -1,43 +1,33 @@
 import 'package:fl_bases_web/config/config.dart';
-import 'package:fl_bases_web/presentation/providers/providers.dart';
+import 'package:fl_bases_web/presentation/shared/shared.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:url_strategy/url_strategy.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
-void main() {
-  setPathUrlStrategy();
+void main() async {
+  await StoragePlugin.init();
+  usePathUrlStrategy();
   runApp(const ProviderScope(child: MainApp()));
 }
 
-class MainApp extends ConsumerStatefulWidget {
+class MainApp extends ConsumerWidget {
   const MainApp({super.key});
 
   @override
-  ConsumerState<MainApp> createState() => _MainAppState();
-}
-
-class _MainAppState extends ConsumerState<MainApp> {
-  GetStorage get _storage => GetStorage();
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((ts) {
-      final key = _storage.read<String>(StorageKeys.theme);
-      ref.read(themeProvider.notifier).setMode(key == 'dark');
-    });
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final isDarkMode = ref.watch(themeProvider);
+  Widget build(BuildContext context, ref) {
+    final isDarkMode = ref.watch(themeProvider).value ?? false;
     final appRouter = ref.watch(appRouterProvider);
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       theme: AppTheme(isDarkMode: isDarkMode).getTheme(),
       title: "Flutter",
       routerConfig: appRouter,
+      localizationsDelegates: [
+        GlobalMaterialLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
     );
   }
 }

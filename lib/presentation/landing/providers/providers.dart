@@ -3,6 +3,4 @@
 /// De esta forma los controladores se llaman desde aca
 library;
 
-export 'counter_provider.dart';
-export 'landing/landing_page_provider.dart';
-export 'theme/theme_provider.dart';
+export 'landing_page_provider.dart';

@@ -1,8 +1,6 @@
-import 'package:fl_bases_web/presentation/widgets/widgets.dart';
+import 'package:fl_bases_web/presentation/shared/shared.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../providers/counter_provider.dart';
 
 class RiverScreen extends ConsumerStatefulWidget {
   const RiverScreen({super.key, this.count});

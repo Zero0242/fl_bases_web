@@ -1,9 +1,9 @@
-import 'package:fl_bases_web/presentation/providers/providers.dart';
-import 'package:fl_bases_web/presentation/screens/screens.dart';
+import 'package:fl_bases_web/app/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../providers/providers.dart';
 import 'custom_flat_button.dart';
 
 class CustomAppMenu extends ConsumerWidget {
@@ -11,7 +11,7 @@ class CustomAppMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final isDarkMode = ref.watch(themeProvider);
+    final isDarkMode = ref.watch(themeProvider).requireValue;
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(

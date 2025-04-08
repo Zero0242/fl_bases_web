@@ -1,14 +1,14 @@
-import 'package:fl_bases_web/presentation/layouts/main_layout.dart';
-import 'package:fl_bases_web/presentation/screens/screens.dart';
-import 'package:fl_bases_web/presentation/views/landing/landing.dart';
+import 'package:fl_bases_web/app/routes.dart';
+import 'package:fl_bases_web/presentation/shared/layouts/main_layout.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'app_router.g.dart';
 
 @riverpod
-GoRouter appRouter(AppRouterRef ref) {
+GoRouter appRouter(Ref ref) {
   return GoRouter(
     initialLocation: LandingScreen.route,
     debugLogDiagnostics: kDebugMode,
