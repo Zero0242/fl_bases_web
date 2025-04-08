@@ -8,7 +8,7 @@ class Theme extends _$Theme {
   @override
   FutureOr<bool> build() async {
     final key = await StoragePlugin.read(StorageKeys.theme);
-    return key == 'true';
+    return key == 'dark';
   }
 
   void setMode(bool val) {

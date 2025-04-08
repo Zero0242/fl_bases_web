@@ -11,7 +11,7 @@ class CustomAppMenu extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
-    final isDarkMode = ref.watch(themeProvider).requireValue;
+    final isDarkMode = ref.watch(themeProvider).valueOrNull ?? false;
     return LayoutBuilder(
       builder: (context, constraints) {
         return Container(
