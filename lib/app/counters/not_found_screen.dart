@@ -26,7 +26,7 @@ class NotFoundScreen extends StatelessWidget {
           style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
         ),
         CustomFlatButton(
-          onPressed: () => context.pushReplacement(HomeScreen.route),
+          onPressed: () => context.go(HomeScreen.route),
           label: 'Go back',
         ),
       ],
