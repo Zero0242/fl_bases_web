@@ -19,18 +19,18 @@ class CustomAppMenu extends ConsumerWidget {
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           child: Wrapper(
             maxWidth: constraints.maxWidth,
-            actions: [
+            actions: <Widget>[
               CustomFlatButton(
                 label: 'Contador Stateful',
                 onPressed: () {
-                  context.pushReplacement(HomeScreen.route);
+                  context.go(HomeScreen.route);
                 },
                 color: Colors.black,
               ),
               CustomFlatButton(
                 label: 'Contador Provider',
                 onPressed: () {
-                  context.pushReplacement(RiverScreen.route);
+                  context.go(RiverScreen.route);
                 },
                 color: Colors.black,
               ),
@@ -38,34 +38,39 @@ class CustomAppMenu extends ConsumerWidget {
                 label: 'Otra Pagina',
                 onPressed: () {
                   final notfoundroute = "/${DateTime.now().toIso8601String()}";
-                  context.pushReplacement(notfoundroute);
+                  context.go(notfoundroute);
                 },
                 color: Colors.black,
               ),
               CustomFlatButton(
                 label: 'Stateful 100',
                 onPressed: () {
-                  context.pushReplacement([HomeScreen.route, '/100'].join());
+                  context.go([HomeScreen.route, '/100'].join());
                 },
                 color: Colors.black,
               ),
               CustomFlatButton(
                 label: 'Contador Provider 200',
                 onPressed: () {
-                  context.pushReplacement([RiverScreen.route, '/200'].join());
+                  context.go([RiverScreen.route, '/200'].join());
                 },
                 color: Colors.black,
               ),
-              const Spacer(),
-              IconButton(
-                onPressed: ref.read(themeProvider.notifier).toggleMode,
-                icon: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
-              ),
-              IconButton(
-                onPressed: () {
-                  context.go(LandingScreen.route);
-                },
-                icon: const Icon(Icons.exit_to_app),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  IconButton(
+                    onPressed: ref.read(themeProvider.notifier).toggleMode,
+                    icon: Icon(isDarkMode ? Icons.light_mode : Icons.dark_mode),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      context.go(LandingScreen.route);
+                    },
+                    icon: const Icon(Icons.exit_to_app),
+                  ),
+                ],
               ),
             ],
           ),
@@ -76,7 +81,13 @@ class CustomAppMenu extends ConsumerWidget {
 
   // ignore: non_constant_identifier_names
   Widget Wrapper({required List<Widget> actions, required double maxWidth}) {
-    if (maxWidth > 520) return Row(children: actions);
+    if (maxWidth > 520) {
+      return Wrap(
+        runAlignment: WrapAlignment.spaceBetween,
+        alignment: WrapAlignment.spaceBetween,
+        children: actions,
+      );
+    }
     return Column(children: actions);
   }
 }

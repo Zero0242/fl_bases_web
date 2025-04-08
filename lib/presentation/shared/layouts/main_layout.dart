@@ -1,4 +1,4 @@
-import 'package:fl_bases_web/presentation/shared/widgets/widgets.dart';
+import 'package:fl_bases_web/presentation/shared/shared.dart';
 import 'package:flutter/material.dart';
 
 class MainLayoutPage extends StatelessWidget {

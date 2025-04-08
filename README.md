@@ -13,7 +13,8 @@ Repaso del curso de Flutter Web [Udemy](https://www.udemy.com/course/flutter-web
 
 1. Clonar repositorio con `git clone`
 2. Instalar los paquetes de Flutter con `flutter pub get`
-3. Ejecutar el proyecto con `flutter run` o con `F5`
+3. Correr generator con `dart run build_runner build -d`
+4. Ejecutar el proyecto con `flutter run` o con `F5`
 
 ## Requisitos
 
