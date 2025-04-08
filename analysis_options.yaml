@@ -15,5 +15,10 @@ linter:
     sort_constructors_first: true
     use_build_context_synchronously: false
 
-plugins:
-  - custom_lint
+analyzer:
+  plugins:
+    - custom_lint
+  # Evitar errores del archivo generado
+  exclude:
+    - "**/*.g.dart"
+    - test/*
