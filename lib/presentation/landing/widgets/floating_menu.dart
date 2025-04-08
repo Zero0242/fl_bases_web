@@ -35,7 +35,7 @@ class _FloatingMenuState extends ConsumerState<FloatingMenu>
 
   @override
   Widget build(BuildContext context) {
-    final pageProvider = ref.read(landingPageProvider.notifier);
+    final pageNotifier = ref.read(landingPageProvider.notifier);
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: GestureDetector(
@@ -55,27 +55,27 @@ class _FloatingMenuState extends ConsumerState<FloatingMenu>
               if (isOpen) ...[
                 CustomMenuItem(
                   text: 'Home',
-                  onPressed: () => pageProvider.goTo(0),
+                  onPressed: () => pageNotifier.goTo(0),
                 ),
                 CustomMenuItem(
                   text: 'About',
                   delay: 30,
-                  onPressed: () => pageProvider.goTo(1),
+                  onPressed: () => pageNotifier.goTo(1),
                 ),
                 CustomMenuItem(
                   text: 'Pricing',
                   delay: 60,
-                  onPressed: () => pageProvider.goTo(2),
+                  onPressed: () => pageNotifier.goTo(2),
                 ),
                 CustomMenuItem(
                   text: 'Contact',
                   delay: 90,
-                  onPressed: () => pageProvider.goTo(3),
+                  onPressed: () => pageNotifier.goTo(3),
                 ),
                 CustomMenuItem(
                   text: 'Location',
                   delay: 120,
-                  onPressed: () => pageProvider.goTo(4),
+                  onPressed: () => pageNotifier.goTo(4),
                 ),
                 CustomMenuItem(
                   text: 'Exit',
